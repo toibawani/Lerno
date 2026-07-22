@@ -1,8 +1,8 @@
 // src/theme/theme.js
 /**
- * LERNO - Design System & Theme
- * High-end dark mode theme inspired by Apple Design Awards & modern UI patterns
- * All design tokens centralized here for consistency
+ * LERNO - Professional Design System v2
+ * Inspired by: Brilliant, National Geographic, Apple Design
+ * High-end dark mode with sophisticated typography and visual hierarchy
  */
 
 export const COLORS = {
@@ -11,59 +11,92 @@ export const COLORS = {
     primary: '#0A0E27',      // Deep navy black
     secondary: '#12172F',    // Slightly lighter navy
     tertiary: '#1A2247',     // Card background
-    overlay: 'rgba(10, 14, 39, 0.6)', // For modals/overlays
+    quaternary: '#22304D',   // Deeper cards
+    overlay: 'rgba(10, 14, 39, 0.6)',
   },
 
-  // Glassmorphism & Accent
+  // Glassmorphism
   glass: {
-    light: 'rgba(255, 255, 255, 0.08)',   // Ultra-light glass
-    medium: 'rgba(255, 255, 255, 0.12)',  // Medium glass
-    strong: 'rgba(255, 255, 255, 0.15)',  // Strong glass
+    light: 'rgba(255, 255, 255, 0.08)',
+    medium: 'rgba(255, 255, 255, 0.12)',
+    strong: 'rgba(255, 255, 255, 0.15)',
+    xstrong: 'rgba(255, 255, 255, 0.2)',
   },
 
-  // Text & Typography
+  // Text
   text: {
-    primary: '#FFFFFF',         // Pure white
-    secondary: '#B8C5D6',       // Muted gray-blue
-    tertiary: '#7D8FA3',        // Darker gray-blue
-    accent: '#E8F0FF',          // Light blue tint
+    primary: '#FFFFFF',
+    secondary: '#B8C5D6',
+    tertiary: '#7D8FA3',
+    accent: '#E8F0FF',
+    disabled: '#5A6B7D',
   },
 
-  // Category Colors (with glassmorphic variants)
+  // Category Colors (Vibrant, Professional)
   categories: {
     physics: {
-      main: '#FF6B9D',         // Vibrant pink-red
+      main: '#FF6B9D',
       light: 'rgba(255, 107, 157, 0.15)',
       dark: 'rgba(255, 107, 157, 0.8)',
+      bg: 'rgba(255, 107, 157, 0.08)',
     },
     biology: {
-      main: '#00D084',         // Emerald green
+      main: '#00D084',
       light: 'rgba(0, 208, 132, 0.15)',
       dark: 'rgba(0, 208, 132, 0.8)',
+      bg: 'rgba(0, 208, 132, 0.08)',
     },
     astronomy: {
-      main: '#4A9EFF',         // Cosmic blue
+      main: '#4A9EFF',
       light: 'rgba(74, 158, 255, 0.15)',
       dark: 'rgba(74, 158, 255, 0.8)',
+      bg: 'rgba(74, 158, 255, 0.08)',
     },
     chemistry: {
-      main: '#FFB946',         // Warm amber
+      main: '#FFB946',
       light: 'rgba(255, 185, 70, 0.15)',
       dark: 'rgba(255, 185, 70, 0.8)',
+      bg: 'rgba(255, 185, 70, 0.08)',
     },
     nature: {
-      main: '#67E8B9',         // Soft teal
+      main: '#67E8B9',
       light: 'rgba(103, 232, 185, 0.15)',
       dark: 'rgba(103, 232, 185, 0.8)',
+      bg: 'rgba(103, 232, 185, 0.08)',
     },
     mathematics: {
-      main: '#D49EFF',         // Soft purple
+      main: '#D49EFF',
       light: 'rgba(212, 158, 255, 0.15)',
       dark: 'rgba(212, 158, 255, 0.8)',
+      bg: 'rgba(212, 158, 255, 0.08)',
+    },
+    geography: {
+      main: '#FF9A56',
+      light: 'rgba(255, 154, 86, 0.15)',
+      dark: 'rgba(255, 154, 86, 0.8)',
+      bg: 'rgba(255, 154, 86, 0.08)',
+    },
+    philosophy: {
+      main: '#A78BFA',
+      light: 'rgba(167, 139, 250, 0.15)',
+      dark: 'rgba(167, 139, 250, 0.8)',
+      bg: 'rgba(167, 139, 250, 0.08)',
+    },
+    technology: {
+      main: '#00FFA3',
+      light: 'rgba(0, 255, 163, 0.15)',
+      dark: 'rgba(0, 255, 163, 0.8)',
+      bg: 'rgba(0, 255, 163, 0.08)',
+    },
+    history: {
+      main: '#FF8C42',
+      light: 'rgba(255, 140, 66, 0.15)',
+      dark: 'rgba(255, 140, 66, 0.8)',
+      bg: 'rgba(255, 140, 66, 0.08)',
     },
   },
 
-  // Status & Interactive
+  // Status
   status: {
     success: '#00D084',
     warning: '#FFB946',
@@ -71,28 +104,30 @@ export const COLORS = {
     info: '#4A9EFF',
   },
 
-  // Borders & Dividers
+  // Borders
   border: {
     light: 'rgba(255, 255, 255, 0.1)',
     medium: 'rgba(255, 255, 255, 0.15)',
     dark: 'rgba(255, 255, 255, 0.2)',
   },
 
-  // Gradients (for visual depth)
+  // Gradients
   gradients: {
-    primaryGradient: ['#0A0E27', '#12172F'],
-    accentGradient: ['#FF6B9D', '#4A9EFF'],
-    glassGradient: ['rgba(255, 255, 255, 0.1)', 'rgba(255, 255, 255, 0.05)'],
+    primary: ['#0A0E27', '#12172F'],
+    accent: ['#FF6B9D', '#4A9EFF'],
+    glass: ['rgba(255, 255, 255, 0.1)', 'rgba(255, 255, 255, 0.05)'],
+    glow: ['rgba(74, 158, 255, 0.4)', 'transparent'],
   },
 };
 
 export const TYPOGRAPHY = {
-  // Font families
   family: {
-    regular: 'System', // Uses platform default (San Francisco on iOS, Roboto on Android)
+    // System fonts (best performance on mobile)
+    regular: 'System',
+    // For iOS: San Francisco
+    // For Android: Roboto
   },
 
-  // Font sizes (scaled for mobile)
   sizes: {
     xs: 11,
     sm: 13,
@@ -102,9 +137,10 @@ export const TYPOGRAPHY = {
     '2xl': 24,
     '3xl': 28,
     '4xl': 32,
+    '5xl': 36,
+    '6xl': 40,
   },
 
-  // Font weights
   weights: {
     light: '300',
     regular: '400',
@@ -114,7 +150,6 @@ export const TYPOGRAPHY = {
     extrabold: '800',
   },
 
-  // Line heights
   lineHeights: {
     tight: 1.2,
     normal: 1.5,
@@ -122,49 +157,68 @@ export const TYPOGRAPHY = {
     loose: 2,
   },
 
-  // Predefined text styles (for consistency)
+  // Professional text styles
   styles: {
+    // Headings - Bold, commanding presence
     h1: {
+      fontSize: 40,
+      fontWeight: '800',
+      lineHeight: 1.1,
+      letterSpacing: -1,
+    },
+    h2: {
       fontSize: 32,
       fontWeight: '700',
       lineHeight: 1.2,
       letterSpacing: -0.5,
     },
-    h2: {
+    h3: {
       fontSize: 28,
       fontWeight: '700',
       lineHeight: 1.3,
       letterSpacing: -0.3,
     },
-    h3: {
+    h4: {
       fontSize: 24,
       fontWeight: '600',
-      lineHeight: 1.4,
+      lineHeight: 1.3,
       letterSpacing: 0,
     },
+    
+    // Subtitles - Elegant secondary text
     subtitle1: {
-      fontSize: 18,
+      fontSize: 20,
       fontWeight: '600',
       lineHeight: 1.5,
       letterSpacing: 0.2,
     },
     subtitle2: {
-      fontSize: 16,
+      fontSize: 18,
       fontWeight: '500',
       lineHeight: 1.5,
       letterSpacing: 0.1,
     },
+    
+    // Body - Primary content
     body1: {
       fontSize: 16,
       fontWeight: '400',
-      lineHeight: 1.6,
+      lineHeight: 1.7,
       letterSpacing: 0.3,
     },
     body2: {
-      fontSize: 14,
+      fontSize: 15,
       fontWeight: '400',
       lineHeight: 1.6,
       letterSpacing: 0.2,
+    },
+    
+    // Labels & small text
+    label: {
+      fontSize: 14,
+      fontWeight: '600',
+      lineHeight: 1.4,
+      letterSpacing: 0.5,
     },
     caption: {
       fontSize: 12,
@@ -172,12 +226,29 @@ export const TYPOGRAPHY = {
       lineHeight: 1.4,
       letterSpacing: 0.4,
     },
+    
+    // Overline - Ultra small, uppercase
     overline: {
       fontSize: 11,
+      fontWeight: '700',
+      lineHeight: 1.3,
+      letterSpacing: 1.2,
+      textTransform: 'uppercase',
+    },
+    
+    // Special styles for premium feel
+    display: {
+      fontSize: 48,
+      fontWeight: '800',
+      lineHeight: 1,
+      letterSpacing: -1.5,
+    },
+    
+    featured: {
+      fontSize: 22,
       fontWeight: '600',
       lineHeight: 1.4,
-      letterSpacing: 1,
-      textTransform: 'uppercase',
+      letterSpacing: 0.15,
     },
   },
 };
@@ -191,6 +262,7 @@ export const SPACING = {
   '2xl': 32,
   '3xl': 40,
   '4xl': 48,
+  '5xl': 56,
 };
 
 export const BORDER_RADIUS = {
@@ -199,43 +271,57 @@ export const BORDER_RADIUS = {
   md: 12,
   lg: 16,
   xl: 20,
+  '2xl': 24,
   full: 9999,
 };
 
 export const SHADOWS = {
-  // Subtle elevation shadows for depth
+  // Elevation system
+  none: {
+    shadowColor: 'transparent',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0,
+  },
   sm: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.08,
     shadowRadius: 4,
-    elevation: 3,
+    elevation: 2,
   },
   md: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
+    shadowOpacity: 0.12,
     shadowRadius: 8,
-    elevation: 5,
+    elevation: 4,
   },
   lg: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.15,
     shadowRadius: 16,
+    elevation: 6,
+  },
+  xl: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.2,
+    shadowRadius: 24,
     elevation: 8,
   },
   glow: {
     shadowColor: '#4A9EFF',
     shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.3,
-    shadowRadius: 12,
-    elevation: 5,
+    shadowOpacity: 0.4,
+    shadowRadius: 16,
+    elevation: 8,
   },
 };
 
 export const ANIMATION = {
-  // Timing functions for smooth interactions
   duration: {
     fast: 150,
     normal: 300,
@@ -243,31 +329,20 @@ export const ANIMATION = {
     slower: 800,
   },
   easing: {
-    // Natural easing curves (inspired by iOS)
     easeInOut: [0.42, 0, 0.58, 1],
     easeOut: [0.25, 0.46, 0.45, 0.94],
     easeIn: [0.42, 0, 1, 1],
-    spring: {
-      damping: 0.8,
-      mass: 1,
-      stiffness: 100,
-      overshoot: 0.5,
-    },
   },
 };
 
 export const BREAKPOINTS = {
-  // Responsive design breakpoints
   small: 375,
   medium: 768,
   large: 1024,
 };
 
 /**
- * Helper function to get category color by name
- * @param {string} category - Category key (e.g., 'physics', 'biology')
- * @param {string} variant - Color variant ('main', 'light', 'dark')
- * @returns {string} Color value
+ * Helper: Get category color
  */
 export const getCategoryColor = (category, variant = 'main') => {
   const categoryKey = category.toLowerCase();
@@ -275,7 +350,14 @@ export const getCategoryColor = (category, variant = 'main') => {
 };
 
 /**
- * Helper to create consistent glassmorphic overlay
+ * Helper: Get category background
+ */
+export const getCategoryBg = (category) => {
+  return getCategoryColor(category, 'bg');
+};
+
+/**
+ * Helper: Create glass style
  */
 export const createGlassStyle = (intensity = 'medium') => {
   return {
@@ -293,4 +375,7 @@ export default {
   SHADOWS,
   ANIMATION,
   BREAKPOINTS,
+  getCategoryColor,
+  getCategoryBg,
+  createGlassStyle,
 };
