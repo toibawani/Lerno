@@ -1,4 +1,9 @@
 // src/theme/theme.js
+/**
+ * LERNO - Premium Design System v2.0
+ * Crafted for exceptional user experience
+ */
+
 export const COLORS = {
   background: {
     primary: '#0A0E27',
@@ -38,6 +43,7 @@ export const COLORS = {
     primary: ['#0A0E27', '#12172F'],
     accent: ['#FF6B9D', '#4A9EFF'],
     glass: ['rgba(255, 255, 255, 0.1)', 'rgba(255, 255, 255, 0.05)'],
+    glow: ['rgba(74, 158, 255, 0.4)', 'transparent'],
   },
 };
 
@@ -65,6 +71,7 @@ export const TYPOGRAPHY = {
 
 export const SPACING = { xs: 4, sm: 8, md: 12, lg: 16, xl: 24, '2xl': 32, '3xl': 40, '4xl': 48, '5xl': 56 };
 export const BORDER_RADIUS = { xs: 4, sm: 8, md: 12, lg: 16, xl: 20, '2xl': 24, full: 9999 };
+
 export const SHADOWS = {
   none: { shadowColor: 'transparent', shadowOffset: { width: 0, height: 0 }, shadowOpacity: 0, shadowRadius: 0, elevation: 0 },
   sm: { shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.08, shadowRadius: 4, elevation: 2 },
@@ -73,13 +80,14 @@ export const SHADOWS = {
   xl: { shadowColor: '#000', shadowOffset: { width: 0, height: 12 }, shadowOpacity: 0.2, shadowRadius: 24, elevation: 8 },
   glow: { shadowColor: '#4A9EFF', shadowOffset: { width: 0, height: 0 }, shadowOpacity: 0.4, shadowRadius: 16, elevation: 8 },
 };
+
 export const ANIMATION = {
   duration: { fast: 150, normal: 300, slow: 500, slower: 800 },
   easing: { easeInOut: [0.42, 0, 0.58, 1], easeOut: [0.25, 0.46, 0.45, 0.94], easeIn: [0.42, 0, 1, 1] },
 };
 
 export const getCategoryColor = (category, variant = 'main') => {
-  const categoryKey = category.toLowerCase();
+  const categoryKey = category?.toLowerCase();
   return COLORS.categories[categoryKey]?.[variant] || COLORS.categories.physics[variant];
 };
 
