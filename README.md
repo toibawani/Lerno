@@ -1,56 +1,95 @@
-# Welcome to your Expo app 👋
+# 📚 LERNO
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+> **Bite-sized daily facts about everyday wonders** — A beautifully designed educational mobile app for curious minds.
 
-## Get started
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Platform](https://img.shields.io/badge/platform-React%20Native-green)
+![License](https://img.shields.io/badge/license-MIT-orange)
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## ✨ Features
 
-2. Start the app
+### 📖 **50+ Curated Facts**
+Explore fascinating insights across 10 categories:
+- 🔬 **Physics** — Forces, motion, and energy
+- 🧬 **Biology** — Life and organisms
+- 🌌 **Astronomy** — Space and cosmos
+- ⚗️ **Chemistry** — Elements and reactions
+- 🌿 **Nature** — Environment and ecosystems
+- ∞ **Mathematics** — Numbers and patterns
+- 🏔️ **Geography** — Earth and landscapes
+- 🧠 **Philosophy** — Thought and ideas
+- 💻 **Technology** — Innovation and computing
+- 📜 **History** — Past events and civilizations
 
-   ```bash
-   npx expo start
-   ```
+### 🎨 **Premium Dark Mode Design**
+- Glassmorphic UI with sophisticated aesthetics
+- Smooth animations and micro-interactions
+- Professional color palette with category-specific themes
+- Responsive layout for all screen sizes
 
-In the output, you'll find options to open the app in a
+### 🔐 **Complete Authentication**
+- Beautiful onboarding experience
+- Secure login and registration flows
+- Form validation with error handling
+- Smooth transitions between screens
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### 🎯 **Intuitive Navigation**
+- Category-based fact organization
+- Search and filter capabilities
+- Detailed fact views with sources and keywords
+- Back navigation and state management
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## 🛠️ Tech Stack
 
-When you're ready, run:
+| Technology | Purpose |
+|------------|---------|
+| **React Native** | Cross-platform mobile framework |
+| **Expo** | Development platform and build service |
+| **React Navigation** | Screen navigation and routing |
+| **Reanimated & Gesture Handler** | Smooth animations and gestures |
+| **Linear Gradient** | Beautiful gradient backgrounds |
+| **TypeScript** | Type safety (optional) |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 16+ and npm
+- Expo CLI (`npm install -g expo-cli`)
+- iOS Simulator or Android Emulator (or Expo Go app)
+
+### Installation
 
 ```bash
-npm run reset-project
+# Clone the repository
+git clone https://github.com/toibawani/lerno.git
+cd lerno
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Running the App
 
-### Other setup steps
+```bash
+# iOS Simulator
+Press 'i' in the terminal
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+# Android Emulator
+Press 'a' in the terminal
 
-## Learn more
+# Web (Browser)
+Press 'w' in the terminal
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+---
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 📁 Project Structure
