@@ -1,20 +1,11 @@
-// src/components/index.js
+// src/screens/index.js
 
-export { CategoryBadge } from './badges/CategoryBadge';
-
-export { WonderCard } from './cards/WonderCard';
-
-export { GlassmorphicContainer } from './common/GlassmorphicContainer';
-
-export {
-    Body1,
-    Body2,
-    Caption,
-    Display,
-    H1,
-    H2,
-    H3,
-    Overline,
-    Subtitle2,
-    Text
-} from './common/Text';
+export { FactDetailScreen } from './FactDetailScreen';
+export { FactsScreen } from './FactsScreen';
+export { FavoritesScreen } from './FavoritesScreen';
+export { HomeScreen } from './HomeScreen';
+export { LoginScreen } from './LoginScreen';
+export { OnboardingScreen } from './OnboardingScreen';
+export { ProfileScreen } from './ProfileScreen';
+export { RegisterScreen } from './RegisterScreen';
+export { SearchScreen } from './SearchScreen';
