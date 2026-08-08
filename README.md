@@ -102,3 +102,25 @@ Scan QR code with Expo Go
 ---
 
 ## 📁 **Project Architecture**
+## 🆕 **v3.0 Features**
+
+### Advanced Search
+- Multi-filter search (category, difficulty, interest level)
+- Sort by relevance, newest, interest, or read time
+- Real-time results count
+
+### Favorites & Collections
+- Save favorite facts for later
+- Persistent local storage with AsyncStorage
+- Quick access from dedicated Saved tab
+
+### User Profile & Analytics
+- View learning statistics across categories
+- Track saved facts and interests
+- Category breakdown with visual charts
+
+### Bottom Navigation
+- Explore: Browse all facts by category
+- Search: Advanced filtering and discovery
+- Saved: Quick access to favorites
+- Profile: User stats and preferences
