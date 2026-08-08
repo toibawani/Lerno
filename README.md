@@ -1,16 +1,23 @@
-# 📚 LERNO
+# 📚 LERNO v2.0 — Premium Edition
 
-> **Bite-sized daily facts about everyday wonders** — A beautifully designed educational mobile app for curious minds.
+> **Bite-sized daily facts about everyday wonders** — A beautifully designed, professional-grade educational mobile application for curious minds.
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
-![Platform](https://img.shields.io/badge/platform-React%20Native-green)
-![License](https://img.shields.io/badge/license-MIT-orange)
+![Version](https://img.shields.io/badge/version-2.0.0-blue?style=flat-square)
+![Platform](https://img.shields.io/badge/platform-React%20Native-green?style=flat-square)
+![License](https://img.shields.io/badge/license-MIT-orange?style=flat-square)
 
 ---
 
-## ✨ Features
+## ✨ Features & Highlights
 
-### 📖 **50+ Curated Facts**
+### 🎨 **Premium Dark Mode Design**
+- Sophisticated glassmorphic UI with beautiful gradients
+- Smooth 60fps animations and micro-interactions
+- Professional color palette with 10 category-specific themes
+- Fully responsive layout for all screen sizes
+- Accessible typography system with perfect contrast ratios
+
+### 📚 **50+ Expertly Curated Facts**
 Explore fascinating insights across 10 categories:
 - 🔬 **Physics** — Forces, motion, and energy
 - 🧬 **Biology** — Life and organisms
@@ -23,73 +30,75 @@ Explore fascinating insights across 10 categories:
 - 💻 **Technology** — Innovation and computing
 - 📜 **History** — Past events and civilizations
 
-### 🎨 **Premium Dark Mode Design**
-- Glassmorphic UI with sophisticated aesthetics
-- Smooth animations and micro-interactions
-- Professional color palette with category-specific themes
-- Responsive layout for all screen sizes
-
-### 🔐 **Complete Authentication**
-- Beautiful onboarding experience
+### 🔐 **Complete Authentication System**
+- Beautiful onboarding with auto-rotating features
 - Secure login and registration flows
-- Form validation with error handling
-- Smooth transitions between screens
+- Real-time form validation with error handling
+- Smooth navigation transitions
+- Demo credentials for instant access
 
-### 🎯 **Intuitive Navigation**
-- Category-based fact organization
-- Search and filter capabilities
+### 🎯 **Intuitive Navigation & UX**
+- Category-based fact organization with grid layout
+- Daily wonder spotlight with animated cards
+- Beautiful facts list with smooth scrolling
 - Detailed fact views with sources and keywords
-- Back navigation and state management
+- Share functionality for social media
+- Professional metadata display
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ **Tech Stack**
 
-| Technology | Purpose |
-|------------|---------|
-| **React Native** | Cross-platform mobile framework |
-| **Expo** | Development platform and build service |
-| **React Navigation** | Screen navigation and routing |
-| **Reanimated & Gesture Handler** | Smooth animations and gestures |
-| **Linear Gradient** | Beautiful gradient backgrounds |
-| **TypeScript** | Type safety (optional) |
+| Technology | Version | Purpose |
+|-----------|---------|---------|
+| React Native | Latest | Cross-platform mobile framework |
+| Expo | 50+ | Development & building platform |
+| React Navigation | 6+ | Routing & navigation |
+| Reanimated | 3+ | High-performance animations |
+| Gesture Handler | 2+ | Touch gesture management |
+| Linear Gradient | 12+ | Beautiful gradient backgrounds |
+| TypeScript | Latest | Type safety (optional) |
 
 ---
 
-## 🚀 Getting Started
+## 🚀 **Getting Started**
 
 ### Prerequisites
-- Node.js 16+ and npm
-- Expo CLI (`npm install -g expo-cli`)
-- iOS Simulator or Android Emulator (or Expo Go app)
+- Node.js 16+ and npm/yarn
+- Expo CLI: `npm install -g expo-cli`
+- iOS Simulator or Android Emulator
+- Expo Go app for mobile testing
 
 ### Installation
 
 ```bash
-# Clone the repository
+# Clone repository
 git clone https://github.com/toibawani/lerno.git
 cd lerno
 
 # Install dependencies
 npm install
 
-# Start the development server
+# Start development server
 npm start
 ```
 
-### Running the App
+### Running on Devices
 
 ```bash
 # iOS Simulator
-Press 'i' in the terminal
+Press 'i'
 
 # Android Emulator
-Press 'a' in the terminal
+Press 'a'
 
-# Web (Browser)
-Press 'w' in the terminal
+# Web Browser
+Press 'w'
+
+# Expo Go Mobile App
+Scan QR code with Expo Go
 ```
 
 ---
 
-## 📁 Project Structure
+## 📁 **Project Architecture**
