@@ -1,129 +1,64 @@
 // src/screens/HomeScreen.js
 /**
- * HomeScreen
- * Main home screen with category navigation
- * Features: Category grid, daily wonder highlight, smooth animations
+ * HomeScreen - Premium Home Experience
+ * Beautiful category grid with daily wonder spotlight
  */
 
-import { LinearGradient } from 'expo-linear-gradient';
+import LinearGradient from 'expo-linear-gradient';
 import { useEffect, useRef, useState } from 'react';
 import {
-    Animated,
-    Dimensions,
-    SafeAreaView,
-    ScrollView,
-    StyleSheet,
-    TouchableOpacity,
-    View,
+  Animated,
+  Dimensions,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import { CategoryBadge } from '../components/badges/CategoryBadge';
 import { GlassmorphicContainer } from '../components/common/GlassmorphicContainer';
-import { Body1, Body2, Caption, H2, H3, Overline, Subtitle2 } from '../components/common/Text';
+import { Body1, Body2, Caption, Display, H2, H3, H4, Overline } from '../components/common/Text';
 import wonders from '../data/wonders.json';
 import { ANIMATION, BORDER_RADIUS, COLORS, SPACING, TYPOGRAPHY } from '../theme/theme';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
-// Category Data with icons and descriptions
 const CATEGORIES = [
-  {
-    id: 'physics',
-    name: 'Physics',
-    icon: '⚡',
-    description: 'Forces, motion & energy',
-    color: COLORS.categories?.physics?.main || '#FF6B6B',
-  },
-  {
-    id: 'biology',
-    name: 'Biology',
-    icon: '🧬',
-    description: 'Life & organisms',
-    color: COLORS.categories?.biology?.main || '#4ECDC4',
-  },
-  {
-    id: 'astronomy',
-    name: 'Astronomy',
-    icon: '🌌',
-    description: 'Space & cosmos',
-    color: COLORS.categories?.astronomy?.main || '#45B7D1',
-  },
-  {
-    id: 'chemistry',
-    name: 'Chemistry',
-    icon: '⚗️',
-    description: 'Elements & reactions',
-    color: COLORS.categories?.chemistry?.main || '#96CEB4',
-  },
-  {
-    id: 'nature',
-    name: 'Nature',
-    icon: '🌿',
-    description: 'Environment & ecosystems',
-    color: COLORS.categories?.nature?.main || '#2ECC71',
-  },
-  {
-    id: 'mathematics',
-    name: 'Mathematics',
-    icon: '∞',
-    description: 'Numbers & patterns',
-    color: COLORS.categories?.mathematics?.main || '#9B59B6',
-  },
-  {
-    id: 'geography',
-    name: 'Geography',
-    icon: '🏔️',
-    description: 'Earth & landscapes',
-    color: COLORS.categories?.geography?.main || '#E67E22',
-  },
-  {
-    id: 'philosophy',
-    name: 'Philosophy',
-    icon: '🧠',
-    description: 'Thought & ideas',
-    color: COLORS.categories?.philosophy?.main || '#34495E',
-  },
-  {
-    id: 'technology',
-    name: 'Technology',
-    icon: '💻',
-    description: 'Innovation & computing',
-    color: COLORS.categories?.technology?.main || '#3498DB',
-  },
-  {
-    id: 'history',
-    name: 'History',
-    icon: '📜',
-    description: 'Past events & events',
-    color: COLORS.categories?.history?.main || '#E74C3C',
-  },
+  { id: 'physics', name: 'Physics', icon: '⚡', color: COLORS.categories.physics.main, description: 'Forces, motion & energy' },
+  { id: 'biology', name: 'Biology', icon: '🧬', color: COLORS.categories.biology.main, description: 'Life & organisms' },
+  { id: 'astronomy', name: 'Astronomy', icon: '🌌', color: COLORS.categories.astronomy.main, description: 'Space & cosmos' },
+  { id: 'chemistry', name: 'Chemistry', icon: '⚗️', color: COLORS.categories.chemistry.main, description: 'Elements & reactions' },
+  { id: 'nature', name: 'Nature', icon: '🌿', color: COLORS.categories.nature.main, description: 'Environment' },
+  { id: 'mathematics', name: 'Mathematics', icon: '∞', color: COLORS.categories.mathematics.main, description: 'Numbers & patterns' },
+  { id: 'geography', name: 'Geography', icon: '🏔️', color: COLORS.categories.geography.main, description: 'Earth & landscapes' },
+  { id: 'philosophy', name: 'Philosophy', icon: '🧠', color: COLORS.categories.philosophy.main, description: 'Thought & ideas' },
+  { id: 'technology', name: 'Technology', icon: '💻', color: COLORS.categories.technology.main, description: 'Innovation' },
+  { id: 'history', name: 'History', icon: '📜', color: COLORS.categories.history.main, description: 'Past events' },
 ];
 
 export const HomeScreen = ({ navigation }) => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
   const [dailyWonder, setDailyWonder] = useState(null);
   const fadeAnim = useRef(new Animated.Value(0)).current;
-  const slideAnim = useRef(new Animated.Value(50)).current;
+  const slideAnim = useRef(new Animated.Value(30)).current;
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
-    // Animate header on mount
     Animated.parallel([
       Animated.timing(fadeAnim, {
         toValue: 1,
-        duration: ANIMATION?.duration?.slow || 400,
+        duration: ANIMATION.duration.slow,
         useNativeDriver: true,
       }),
       Animated.timing(slideAnim, {
         toValue: 0,
-        duration: ANIMATION?.duration?.slow || 400,
+        duration: ANIMATION.duration.slow,
         useNativeDriver: true,
       }),
     ]).start();
 
-    // Set a random daily wonder safely
-    const wonderList = wonders?.wonders || wonders;
-    if (Array.isArray(wonderList) && wonderList.length > 0) {
-      const randomIndex = Math.floor(Math.random() * wonderList.length);
-      setDailyWonder(wonderList[randomIndex]);
+    if (wonders.wonders && wonders.wonders.length > 0) {
+      const randomIndex = Math.floor(Math.random() * wonders.wonders.length);
+      setDailyWonder(wonders.wonders[randomIndex]);
     }
   }, []);
 
@@ -133,14 +68,12 @@ export const HomeScreen = ({ navigation }) => {
   };
 
   const handleDailyWonderPress = () => {
-    navigation.navigate('FactDetail', { wonder: dailyWonder });
+    if (dailyWonder) {
+      navigation.navigate('FactDetail', { wonder: dailyWonder });
+    }
   };
 
-  const getCategoryFactCount = (categoryId) => {
-    const wonderList = wonders?.wonders || wonders;
-    if (!Array.isArray(wonderList)) return 0;
-    return wonderList.filter((w) => w.category === categoryId).length;
-  };
+  const getCategoryFactCount = (categoryId) => wonders.wonders.filter(w => w.category === categoryId).length;
 
   return (
     <LinearGradient
@@ -153,8 +86,9 @@ export const HomeScreen = ({ navigation }) => {
         <ScrollView
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
+          scrollEventThrottle={16}
         >
-          {/* Header */}
+          {/* Header with Greeting */}
           <Animated.View
             style={[
               styles.header,
@@ -166,29 +100,36 @@ export const HomeScreen = ({ navigation }) => {
           >
             <View style={styles.headerTop}>
               <View>
-                <Overline color="secondary">Good Morning</Overline>
-                <H2 color="primary" style={styles.greeting}>
-                  Welcome to LERNO
+                <Overline color="secondary" style={styles.greeting}>
+                  Welcome Back
+                </Overline>
+                <H2 color="primary" style={styles.headerTitle}>
+                  Explore Wonders
                 </H2>
               </View>
               <TouchableOpacity style={styles.profileIcon}>
-                <View style={styles.profileCircle}>
-                  <Subtitle2 color="primary">👤</Subtitle2>
-                </View>
+                <LinearGradient
+                  colors={[COLORS.categories.astronomy.main, COLORS.categories.physics.main]}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={styles.profileCircle}
+                >
+                  <Display style={styles.profileEmoji}>👤</Display>
+                </LinearGradient>
               </TouchableOpacity>
             </View>
 
             <Body1 color="secondary" style={styles.headerSubtitle}>
-              Discover fascinating facts about everyday wonders
+              Discover something amazing today
             </Body1>
           </Animated.View>
 
           {/* Daily Wonder Section */}
           {dailyWonder && (
             <View style={styles.dailyWonderSection}>
-              <View style={styles.dailyWonderHeader}>
-                <Overline color={COLORS.categories?.astronomy?.main || '#45B7D1'}>
-                  ✨ Daily Wonder
+              <View style={styles.dailyWonderLabel}>
+                <Overline color={COLORS.categories.astronomy.main}>
+                  ✨ Wonder of the Day
                 </Overline>
               </View>
 
@@ -204,41 +145,42 @@ export const HomeScreen = ({ navigation }) => {
                 >
                   <LinearGradient
                     colors={[
-                      COLORS.categories?.[dailyWonder.category]?.light || COLORS.glass.light,
+                      COLORS.categories[dailyWonder.category]?.light || COLORS.glass.light,
                       COLORS.glass.medium,
                     ]}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 1 }}
                     style={styles.dailyWonderGradient}
                   >
-                    <View style={styles.dailyWonderContent}>
-                      <View style={styles.dailyWonderTop}>
-                        <CategoryBadge
-                          category={dailyWonder.category}
-                          size="medium"
-                          variant="filled"
-                        />
-                        <Subtitle2 color="secondary">
-                          {dailyWonder.readTime || 2} min read
-                        </Subtitle2>
-                      </View>
-
-                      <H3 color="primary" style={styles.dailyWonderTitle}>
-                        {dailyWonder.title}
-                      </H3>
-
-                      <Body2 color="secondary" numberOfLines={2} style={styles.dailyWonderDesc}>
-                        {dailyWonder.subtitle || dailyWonder.fact}
-                      </Body2>
-
-                      <View style={styles.dailyWonderFooter}>
-                        <Caption color="tertiary">
-                          ⭐ {dailyWonder.interestLevel || 'High'}
-                        </Caption>
-                        <Caption color={COLORS.categories?.astronomy?.main || '#45B7D1'} style={styles.exploreLink}>
-                          Explore →
+                    <View style={styles.dailyWonderTop}>
+                      <CategoryBadge
+                        category={dailyWonder.category}
+                        size="medium"
+                        variant="filled"
+                      />
+                      <View style={styles.ratingBadge}>
+                        <Caption color="secondary">
+                          ⭐ {dailyWonder.interestLevel}
                         </Caption>
                       </View>
+                    </View>
+
+                    <H3 color="primary" style={styles.dailyWonderTitle}>
+                      {dailyWonder.title}
+                    </H3>
+
+                    <Body2 color="secondary" numberOfLines={2} style={styles.dailyWonderDesc}>
+                      {dailyWonder.subtitle || dailyWonder.fact}
+                    </Body2>
+
+                    <View style={styles.dailyWonderFooter}>
+                      <Caption color="tertiary">📖 {dailyWonder.readTime} min read</Caption>
+                      <Caption
+                        color={COLORS.categories.astronomy.main}
+                        style={styles.exploreLink}
+                      >
+                        Explore →
+                      </Caption>
                     </View>
                   </LinearGradient>
                 </GlassmorphicContainer>
@@ -249,90 +191,20 @@ export const HomeScreen = ({ navigation }) => {
           {/* Categories Section */}
           <View style={styles.categoriesSection}>
             <View style={styles.categoriesHeader}>
-              <H3 color="primary">Explore Categories</H3>
-              <Caption color="secondary">Tap to explore facts</Caption>
+              <H3 color="primary">Explore By Category</H3>
+              <Caption color="secondary">{CATEGORIES.length} topics to discover</Caption>
             </View>
 
             <View style={styles.categoryGrid}>
               {CATEGORIES.map((category, index) => (
-                <TouchableOpacity
+                <PremiumCategoryCard
                   key={category.id}
-                  activeOpacity={0.8}
+                  category={category}
+                  isSelected={selectedCategory === category.id}
                   onPress={() => handleCategoryPress(category)}
-                  style={[
-                    styles.categoryCardContainer,
-                    index % 2 === 1 && styles.categoryCardRight,
-                  ]}
-                >
-                  <GlassmorphicContainer
-                    intensity="medium"
-                    borderRadius="lg"
-                    shadow="md"
-                    style={[
-                      styles.categoryCard,
-                      selectedCategory === category.id && styles.categoryCardSelected,
-                    ]}
-                  >
-                    <LinearGradient
-                      colors={[
-                        COLORS.categories?.[category.id]?.light || COLORS.glass.light,
-                        COLORS.glass.medium,
-                      ]}
-                      start={{ x: 0, y: 0 }}
-                      end={{ x: 1, y: 1 }}
-                      style={styles.categoryCardGradient}
-                    >
-                      {/* Icon */}
-                      <View style={styles.categoryIconContainer}>
-                        <View
-                          style={[
-                            styles.categoryIconCircle,
-                            { borderColor: category.color },
-                          ]}
-                        >
-                          <Subtitle2 style={styles.categoryIcon}>
-                            {category.icon}
-                          </Subtitle2>
-                        </View>
-                      </View>
-
-                      {/* Name */}
-                      <Subtitle2
-                        color="primary"
-                        style={styles.categoryName}
-                      >
-                        {category.name}
-                      </Subtitle2>
-
-                      {/* Description */}
-                      <Caption
-                        color="secondary"
-                        numberOfLines={1}
-                        style={styles.categoryDescription}
-                      >
-                        {category.description}
-                      </Caption>
-
-                      {/* Fact Count */}
-                      <View style={styles.categoryFooter}>
-                        <Caption
-                          color={category.color}
-                          style={styles.categoryCount}
-                        >
-                          {getCategoryFactCount(category.id)} facts
-                        </Caption>
-                      </View>
-
-                      {/* Color Bar */}
-                      <View
-                        style={[
-                          styles.categoryBar,
-                          { backgroundColor: category.color },
-                        ]}
-                      />
-                    </LinearGradient>
-                  </GlassmorphicContainer>
-                </TouchableOpacity>
+                  factCount={getCategoryFactCount(category.id)}
+                  delay={index * 50}
+                />
               ))}
             </View>
           </View>
@@ -341,130 +213,256 @@ export const HomeScreen = ({ navigation }) => {
           <View style={styles.statsSection}>
             <GlassmorphicContainer intensity="light" borderRadius="lg" style={styles.statsContainer}>
               <View style={styles.statItem}>
-                <Subtitle2 color="primary" style={styles.statNumber}>
-                  {(wonders?.wonders || wonders)?.length || 0}
-                </Subtitle2>
-                <Caption color="secondary">Total Facts</Caption>
+                <H3 color={COLORS.categories.astronomy.main} style={styles.statNumber}>
+                  {wonders.wonders?.length || 0}
+                </H3>
+                <Caption color="secondary">Facts Ready</Caption>
               </View>
 
               <View style={styles.statDivider} />
 
               <View style={styles.statItem}>
-                <Subtitle2 color="primary" style={styles.statNumber}>
+                <H3 color={COLORS.categories.biology.main} style={styles.statNumber}>
                   {CATEGORIES.length}
-                </Subtitle2>
+                </H3>
                 <Caption color="secondary">Categories</Caption>
               </View>
 
               <View style={styles.statDivider} />
 
               <View style={styles.statItem}>
-                <Subtitle2 color="primary" style={styles.statNumber}>
-                  📚
-                </Subtitle2>
+                <H3 color={COLORS.categories.nature.main} style={styles.statNumber}>
+                  ∞
+                </H3>
                 <Caption color="secondary">Learning</Caption>
               </View>
             </GlassmorphicContainer>
           </View>
 
-          {/* Footer CTA */}
-          <View style={styles.footerCTA}>
-            <Body2 color="secondary" style={styles.footerText}>
-              Share your favorite facts with friends
-            </Body2>
+          {/* Premium Features Banner */}
+          <View style={styles.premiumBanner}>
+            <GlassmorphicContainer intensity="strong" borderRadius="lg" style={styles.bannerContent}>
+              <View style={styles.bannerText}>
+                <H4 color="primary">Premium Experience</H4>
+                <Body2 color="secondary" style={styles.bannerDescription}>
+                  Free access to all 50+ facts. No ads. No signup required.
+                </Body2>
+              </View>
+              <View style={styles.bannerIcon}>
+                <Display>✨</Display>
+              </View>
+            </GlassmorphicContainer>
           </View>
+
+          {/* Footer Spacing */}
+          <View style={styles.footerSpacing} />
         </ScrollView>
       </SafeAreaView>
     </LinearGradient>
   );
 };
 
+/**
+ * Premium Category Card Component
+ */
+const PremiumCategoryCard = ({ category, isSelected, onPress, factCount, delay }) => {
+  const scaleAnim = useRef(new Animated.Value(isSelected ? 1.05 : 1)).current;
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: ANIMATION.duration.normal,
+      delay,
+      useNativeDriver: true,
+    }).start();
+  }, [delay]);
+
+  useEffect(() => {
+    Animated.spring(scaleAnim, {
+      toValue: isSelected ? 1.05 : 1,
+      useNativeDriver: true,
+    }).start();
+  }, [isSelected]);
+
+  return (
+    <Animated.View
+      style={[
+        styles.categoryCardWrapper,
+        {
+          opacity: fadeAnim,
+          transform: [{ scale: scaleAnim }],
+        },
+      ]}
+    >
+      <TouchableOpacity
+        activeOpacity={0.8}
+        onPress={onPress}
+      >
+        <GlassmorphicContainer
+          intensity="medium"
+          borderRadius="lg"
+          shadow={isSelected ? 'lg' : 'md'}
+          style={[styles.categoryCard, isSelected && styles.categoryCardActive]}
+        >
+          <LinearGradient
+            colors={[
+              COLORS.categories[category.id]?.light || COLORS.glass.light,
+              COLORS.glass.medium,
+            ]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.categoryCardGradient}
+          >
+            {/* Icon Circle */}
+            <View style={styles.categoryIconContainer}>
+              <View
+                style={[
+                  styles.categoryIconCircle,
+                  {
+                    borderColor: category.color,
+                    backgroundColor: isSelected
+                      ? `${category.color}20`
+                      : COLORS.glass.light,
+                  },
+                ]}
+              >
+                <Display style={styles.categoryIcon}>{category.icon}</Display>
+              </View>
+            </View>
+
+            {/* Category Name */}
+            <H4 color="primary" style={styles.categoryName}>
+              {category.name}
+            </H4>
+
+            {/* Description */}
+            <Caption color="secondary" numberOfLines={1} style={styles.categoryDescription}>
+              {category.description}
+            </Caption>
+
+            {/* Fact Count */}
+            <View style={styles.categoryFooter}>
+              <Caption
+                color={category.color}
+                style={[styles.categoryCount, { fontWeight: '700' }]}
+              >
+                {factCount} facts
+              </Caption>
+            </View>
+
+            {/* Color Bar */}
+            <View
+              style={[
+                styles.categoryBar,
+                {
+                  backgroundColor: category.color,
+                  height: isSelected ? 4 : 3,
+                },
+              ]}
+            />
+          </LinearGradient>
+        </GlassmorphicContainer>
+      </TouchableOpacity>
+    </Animated.View>
+  );
+};
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  safeArea: {
-    flex: 1,
-  },
+  container: { flex: 1 },
+  safeArea: { flex: 1 },
   scrollContent: {
     paddingHorizontal: SPACING.lg,
     paddingTop: SPACING.md,
-    paddingBottom: SPACING['3xl'] || 32,
+    paddingBottom: SPACING['4xl'],
   },
 
   // Header
   header: {
-    marginBottom: SPACING['2xl'] || 24,
+    marginBottom: SPACING['2xl'],
   },
   headerTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    marginBottom: SPACING.md,
+    marginBottom: SPACING.lg,
   },
   greeting: {
-    marginBottom: SPACING.xs,
+    letterSpacing: 1,
+  },
+  headerTitle: {
+    marginTop: SPACING.xs,
   },
   profileIcon: {
     padding: SPACING.sm,
   },
   profileCircle: {
-    width: 44,
-    height: 44,
-    borderRadius: BORDER_RADIUS.full || 22,
-    backgroundColor: COLORS.glass.medium,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: COLORS.border.light,
+    elevation: 5,
+  },
+  profileEmoji: {
+    fontSize: 24,
   },
   headerSubtitle: {
-    fontSize: TYPOGRAPHY.sizes?.base || 16,
+    fontSize: TYPOGRAPHY.sizes.base,
+    opacity: 0.85,
   },
 
   // Daily Wonder
   dailyWonderSection: {
-    marginBottom: SPACING['2xl'] || 24,
+    marginBottom: SPACING['2xl'],
   },
-  dailyWonderHeader: {
+  dailyWonderLabel: {
     marginBottom: SPACING.md,
   },
   dailyWonderCard: {
     overflow: 'hidden',
+    minHeight: 280,
   },
   dailyWonderGradient: {
-    paddingHorizontal: SPACING.lg,
-    paddingVertical: SPACING.xl,
-  },
-  dailyWonderContent: {
-    gap: SPACING.md,
+    padding: SPACING.lg,
+    justifyContent: 'space-between',
+    minHeight: 280,
   },
   dailyWonderTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginBottom: SPACING.lg,
+  },
+  ratingBadge: {
+    paddingHorizontal: SPACING.md,
+    paddingVertical: SPACING.xs,
+    borderRadius: BORDER_RADIUS.full,
+    backgroundColor: COLORS.glass.light,
   },
   dailyWonderTitle: {
-    marginTop: SPACING.xs,
+    lineHeight: TYPOGRAPHY.lineHeights.tight * 28,
+    marginBottom: SPACING.md,
   },
   dailyWonderDesc: {
-    marginVertical: SPACING.xs,
+    lineHeight: TYPOGRAPHY.lineHeights.relaxed,
+    marginBottom: SPACING.lg,
   },
   dailyWonderFooter: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: SPACING.sm,
+    paddingTop: SPACING.lg,
     borderTopWidth: 1,
     borderTopColor: COLORS.border.light,
   },
   exploreLink: {
-    fontWeight: '600',
+    fontWeight: '700',
   },
 
   // Categories
   categoriesSection: {
-    marginBottom: SPACING['2xl'] || 24,
+    marginBottom: SPACING['2xl'],
   },
   categoriesHeader: {
     marginBottom: SPACING.lg,
@@ -472,94 +470,112 @@ const styles = StyleSheet.create({
   categoryGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    gap: SPACING.lg,
     justifyContent: 'space-between',
   },
-  categoryCardContainer: {
+  categoryCardWrapper: {
     width: '48%',
-    marginBottom: SPACING.lg,
-  },
-  categoryCardRight: {
-    marginTop: 0,
   },
   categoryCard: {
     overflow: 'hidden',
+    minHeight: 200,
   },
-  categoryCardSelected: {
-    borderWidth: 2,
-    borderColor: COLORS.border.active || '#FFFFFF',
+  categoryCardActive: {
+    borderColor: COLORS.categories.astronomy.main,
+    borderWidth: 1.5,
   },
   categoryCardGradient: {
-    padding: SPACING.md,
-    borderRadius: BORDER_RADIUS.lg || 12,
-    position: 'relative',
+    flex: 1,
+    paddingHorizontal: SPACING.md,
+    paddingVertical: SPACING.lg,
+    justifyContent: 'space-between',
   },
   categoryIconContainer: {
-    marginBottom: SPACING.xs,
+    marginBottom: SPACING.md,
   },
   categoryIconCircle: {
-    width: 36,
-    height: 36,
-    borderRadius: BORDER_RADIUS.full || 18,
-    borderWidth: 1.5,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    borderWidth: 2,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: COLORS.glass.light,
   },
   categoryIcon: {
-    textAlign: 'center',
+    fontSize: 24,
   },
   categoryName: {
-    fontSize: TYPOGRAPHY.sizes?.md || 16,
-    fontWeight: '600',
-    marginBottom: 2,
+    fontWeight: '700',
+    marginBottom: SPACING.xs,
   },
   categoryDescription: {
-    marginBottom: SPACING.sm,
+    opacity: 0.8,
   },
   categoryFooter: {
-    marginTop: SPACING.xs,
+    marginTop: SPACING.sm,
   },
   categoryCount: {
-    fontWeight: '600',
+    fontSize: TYPOGRAPHY.sizes.sm,
   },
   categoryBar: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    height: 3,
   },
 
-  // Stats Section
+  // Stats
   statsSection: {
     marginBottom: SPACING.xl,
   },
   statsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    paddingHorizontal: SPACING.lg,
     paddingVertical: SPACING.lg,
   },
   statItem: {
+    flex: 1,
     alignItems: 'center',
   },
   statNumber: {
-    fontSize: TYPOGRAPHY.sizes?.xl || 20,
-    fontWeight: 'bold',
-    marginBottom: 2,
+    fontSize: TYPOGRAPHY.sizes['3xl'],
+    fontWeight: '800',
+    marginBottom: SPACING.xs,
   },
   statDivider: {
     width: 1,
-    height: '60%',
+    height: 45,
     backgroundColor: COLORS.border.light,
+    marginHorizontal: SPACING.md,
   },
 
-  // Footer CTA
-  footerCTA: {
-    alignItems: 'center',
-    marginTop: SPACING.md,
+  // Premium Banner
+  premiumBanner: {
+    marginBottom: SPACING.xl,
   },
-  footerText: {
-    textAlign: 'center',
+  bannerContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: SPACING.lg,
+    paddingVertical: SPACING.lg,
+  },
+  bannerText: {
+    flex: 1,
+  },
+  bannerDescription: {
+    marginTop: SPACING.xs,
+    opacity: 0.85,
+  },
+  bannerIcon: {
+    marginLeft: SPACING.lg,
+  },
+
+  // Footer
+  footerSpacing: {
+    height: SPACING['2xl'],
   },
 });
