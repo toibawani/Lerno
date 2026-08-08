@@ -1,4 +1,3 @@
-// App.js
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -9,24 +8,27 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
     FactDetailScreen,
     FactsScreen,
+    FavoritesScreen,
     HomeScreen,
     LoginScreen,
     OnboardingScreen,
+    ProfileScreen,
     RegisterScreen,
     SearchScreen,
 } from './src/screens';
 
+import { FavoritesProvider } from './src/context/FavoritesContext';
 import { COLORS } from './src/theme/theme';
 import NAVIGATION from './src/utils/navigationConstants';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-/* -------------------------------------------------------
+/* =====================================================
    AUTH STACK
-------------------------------------------------------- */
+===================================================== */
 
-const AuthStack = () => {
+function AuthStack() {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -34,7 +36,6 @@ const AuthStack = () => {
         contentStyle: {
           backgroundColor: COLORS.background.primary,
         },
-        animation: 'fade',
         gestureEnabled: true,
       }}
     >
@@ -54,13 +55,13 @@ const AuthStack = () => {
       />
     </Stack.Navigator>
   );
-};
+}
 
-/* -------------------------------------------------------
+/* =====================================================
    HOME STACK
-------------------------------------------------------- */
+===================================================== */
 
-const HomeStack = () => {
+function HomeStack() {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -88,13 +89,13 @@ const HomeStack = () => {
       />
     </Stack.Navigator>
   );
-};
+}
 
-/* -------------------------------------------------------
+/* =====================================================
    SEARCH STACK
-------------------------------------------------------- */
+===================================================== */
 
-const SearchStack = () => {
+function SearchStack() {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -117,13 +118,66 @@ const SearchStack = () => {
       />
     </Stack.Navigator>
   );
-};
+}
 
-/* -------------------------------------------------------
-   MAIN TABS
-------------------------------------------------------- */
+/* =====================================================
+   FAVORITES STACK
+===================================================== */
 
-const MainTabs = () => {
+function FavoritesStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        contentStyle: {
+          backgroundColor: COLORS.background.primary,
+        },
+        animation: 'slide_from_right',
+        gestureEnabled: true,
+      }}
+    >
+      <Stack.Screen
+        name="FavoritesMain"
+        component={FavoritesScreen}
+      />
+
+      <Stack.Screen
+        name={NAVIGATION.FACT_DETAIL}
+        component={FactDetailScreen}
+      />
+    </Stack.Navigator>
+  );
+}
+
+/* =====================================================
+   PROFILE STACK
+===================================================== */
+
+function ProfileStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        contentStyle: {
+          backgroundColor: COLORS.background.primary,
+        },
+        animation: 'slide_from_right',
+        gestureEnabled: true,
+      }}
+    >
+      <Stack.Screen
+        name="ProfileMain"
+        component={ProfileScreen}
+      />
+    </Stack.Navigator>
+  );
+}
+
+/* =====================================================
+   MAIN TAB NAVIGATION
+===================================================== */
+
+function MainTabs() {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -154,7 +208,7 @@ const MainTabs = () => {
         name="HomeTab"
         component={HomeStack}
         options={{
-          title: 'Home',
+          title: 'Explore',
           tabBarLabel: 'Explore',
         }}
       />
@@ -167,15 +221,33 @@ const MainTabs = () => {
           tabBarLabel: 'Search',
         }}
       />
+
+      <Tab.Screen
+        name="FavoritesTab"
+        component={FavoritesStack}
+        options={{
+          title: 'Saved',
+          tabBarLabel: 'Saved',
+        }}
+      />
+
+      <Tab.Screen
+        name="ProfileTab"
+        component={ProfileStack}
+        options={{
+          title: 'Profile',
+          tabBarLabel: 'Profile',
+        }}
+      />
     </Tab.Navigator>
   );
-};
+}
 
-/* -------------------------------------------------------
+/* =====================================================
    ROOT NAVIGATOR
-------------------------------------------------------- */
+===================================================== */
 
-const RootNavigator = ({ isLoggedIn, isLoading }) => {
+function RootNavigator({ isLoggedIn, isLoading }) {
   if (isLoading) {
     return (
       <View
@@ -194,16 +266,12 @@ const RootNavigator = ({ isLoggedIn, isLoading }) => {
     );
   }
 
-  return (
-    <NavigationContainer>
-      {isLoggedIn ? <MainTabs /> : <AuthStack />}
-    </NavigationContainer>
-  );
-};
+  return isLoggedIn ? <MainTabs /> : <AuthStack />;
+}
 
-/* -------------------------------------------------------
+/* =====================================================
    APP
-------------------------------------------------------- */
+===================================================== */
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -211,7 +279,7 @@ export default function App() {
 
   useEffect(() => {
     // Temporary authentication check.
-    // Replace this later with your real auth/storage check.
+    // Replace this later with your real authentication logic.
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1500);
@@ -223,10 +291,14 @@ export default function App() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <RootNavigator
-        isLoggedIn={isLoggedIn}
-        isLoading={isLoading}
-      />
+      <FavoritesProvider>
+        <NavigationContainer>
+          <RootNavigator
+            isLoggedIn={isLoggedIn}
+            isLoading={isLoading}
+          />
+        </NavigationContainer>
+      </FavoritesProvider>
     </GestureHandlerRootView>
   );
 }
