@@ -24,10 +24,6 @@ import NAVIGATION from './src/utils/navigationConstants';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-/* =====================================================
-   AUTH STACK
-===================================================== */
-
 function AuthStack() {
   return (
     <Stack.Navigator
@@ -36,7 +32,6 @@ function AuthStack() {
         contentStyle: {
           backgroundColor: COLORS.background.primary,
         },
-        gestureEnabled: true,
       }}
     >
       <Stack.Screen
@@ -57,10 +52,6 @@ function AuthStack() {
   );
 }
 
-/* =====================================================
-   HOME STACK
-===================================================== */
-
 function HomeStack() {
   return (
     <Stack.Navigator
@@ -69,8 +60,6 @@ function HomeStack() {
         contentStyle: {
           backgroundColor: COLORS.background.primary,
         },
-        animation: 'slide_from_right',
-        gestureEnabled: true,
       }}
     >
       <Stack.Screen
@@ -91,10 +80,6 @@ function HomeStack() {
   );
 }
 
-/* =====================================================
-   SEARCH STACK
-===================================================== */
-
 function SearchStack() {
   return (
     <Stack.Navigator
@@ -103,8 +88,6 @@ function SearchStack() {
         contentStyle: {
           backgroundColor: COLORS.background.primary,
         },
-        animation: 'slide_from_right',
-        gestureEnabled: true,
       }}
     >
       <Stack.Screen
@@ -120,10 +103,6 @@ function SearchStack() {
   );
 }
 
-/* =====================================================
-   FAVORITES STACK
-===================================================== */
-
 function FavoritesStack() {
   return (
     <Stack.Navigator
@@ -132,8 +111,6 @@ function FavoritesStack() {
         contentStyle: {
           backgroundColor: COLORS.background.primary,
         },
-        animation: 'slide_from_right',
-        gestureEnabled: true,
       }}
     >
       <Stack.Screen
@@ -149,10 +126,6 @@ function FavoritesStack() {
   );
 }
 
-/* =====================================================
-   PROFILE STACK
-===================================================== */
-
 function ProfileStack() {
   return (
     <Stack.Navigator
@@ -161,8 +134,6 @@ function ProfileStack() {
         contentStyle: {
           backgroundColor: COLORS.background.primary,
         },
-        animation: 'slide_from_right',
-        gestureEnabled: true,
       }}
     >
       <Stack.Screen
@@ -172,10 +143,6 @@ function ProfileStack() {
     </Stack.Navigator>
   );
 }
-
-/* =====================================================
-   MAIN TAB NAVIGATION
-===================================================== */
 
 function MainTabs() {
   return (
@@ -208,7 +175,7 @@ function MainTabs() {
         name="HomeTab"
         component={HomeStack}
         options={{
-          title: 'Explore',
+          title: 'Home',
           tabBarLabel: 'Explore',
         }}
       />
@@ -243,10 +210,6 @@ function MainTabs() {
   );
 }
 
-/* =====================================================
-   ROOT NAVIGATOR
-===================================================== */
-
 function RootNavigator({ isLoggedIn, isLoading }) {
   if (isLoading) {
     return (
@@ -269,20 +232,14 @@ function RootNavigator({ isLoggedIn, isLoading }) {
   return isLoggedIn ? <MainTabs /> : <AuthStack />;
 }
 
-/* =====================================================
-   APP
-===================================================== */
-
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Temporary authentication check.
-    // Replace this later with your real authentication logic.
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
+    }, 500);
 
     return () => {
       clearTimeout(timer);
